@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calorie Burn Predictor</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 20px auto; padding: 20px; }
+        .input-group { margin: 10px 0; }
+        label { display: inline-block; width: 200px; }
+        input { width: 150px; padding: 5px; }
+        button { margin: 20px 0; padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        #result { font-weight: bold; color: #007bff; }
+    </style>
+</head>
+<body>
+    <h2>Calorie Burn Predictor</h2>
+    <div class="input-group">
+        <label>Total Steps:</label>
+        <input type="number" id="totalSteps" placeholder="e.g., 10000">
+    </div>
+    <div class="input-group">
+        <label>Very Active Minutes:</label>
+        <input type="number" id="veryActive" placeholder="e.g., 30">
+    </div>
+    <div class="input-group">
+        <label>Fairly Active Minutes:</label>
+        <input type="number" id="fairlyActive" placeholder="e.g., 45">
+    </div>
+    <div class="input-group">
+        <label>Lightly Active Minutes:</label>
+        <input type="number" id="lightlyActive" placeholder="e.g., 120">
+    </div>
+    <div class="input-group">
+        <label>Sedentary Minutes:</label>
+        <input type="number" id="sedentary" placeholder="e.g., 960">
+    </div>
+    <button onclick="calculateCalories()">Predict Calories</button>
+    <div id="result"></div>
+
+    <script>
+        function calculateCalories() {
+            // Get input values
+            const totalSteps = parseFloat(document.getElementById('totalSteps').value) || 0;
+            const veryActive = parseFloat(document.getElementById('veryActive').value) || 0;
+            const fairlyActive = parseFloat(document.getElementById('fairlyActive').value) || 0;
+            const lightlyActive = parseFloat(document.getElementById('lightlyActive').value) || 0;
+            const sedentary = parseFloat(document.getElementById('sedentary').value) || 0;
+            
+            // Simple calculation (this is a basic example - replace with actual model)
+            const totalMinutes = veryActive + fairlyActive + lightlyActive + sedentary;
+            const activityRatio = (veryActive + fairlyActive + lightlyActive) / totalMinutes;
+            const stepsPerCalorie = totalSteps / 2000; // simplified ratio
+            
+            // Display result
+            document.getElementById('result').innerHTML = 
+                `Estimated Calories Burned: ${Math.round(totalSteps * 0.05)} calories`;
+        }
+    </script>
+</body>
+</html>
